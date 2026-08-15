@@ -7,7 +7,7 @@ const form = document.querySelector('form');
 
 form.addEventListener('submit', createPromise);
 
-function createPromise(event, ) {
+function createPromise(event) {
     event.preventDefault();
 
     const delay = Number(event.target.elements.delay.value);
