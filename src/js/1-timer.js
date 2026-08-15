@@ -7,6 +7,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 const button = document.querySelector('.btn');
+button.disabled = 'true';
 
 let userSelectedDate;
 
@@ -17,7 +18,7 @@ flatpickr("#datetime-picker", {
     minuteIncrement: 1,
     onClose(selectedDates) {
 
-        if (new Date(selectedDates) < new Date()) {
+        if (new Date(selectedDates[0]) <= new Date()) {
             button.disabled = 'true';
 
             iziToast.show({
@@ -47,7 +48,8 @@ const minutesSpan = document.querySelector('[data-minutes]');
 const secondsSpan = document.querySelector('[data-seconds]');
 
 button.addEventListener('click', () => {
-
+    const input = document.querySelector('#datetime-picker');
+    input.disabled = 'true';
     button.disabled = 'true';
 
     const timerInterval = setInterval(() => {
@@ -61,11 +63,13 @@ button.addEventListener('click', () => {
             minutesSpan.textContent = '00';
             secondsSpan.textContent = '00';
 
+            input.disabled = false;
+             
              return;
         }
         const { days, hours, minutes, seconds } = convertMs(ms);
         
-        daysSpan.textContent = days;
+        daysSpan.textContent = String(days).padStart(2, '0');
         hoursSpan.textContent = String(hours).padStart(2, '0');
         minutesSpan.textContent = String(minutes).padStart(2, '0');
         secondsSpan.textContent = String(seconds).padStart(2, '0');
@@ -83,13 +87,9 @@ function convertMs(ms) {
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
   const days = Math.floor(ms / day);
-  // Remaining hours
   const hours = Math.floor((ms % day) / hour);
-  // Remaining minutes
   const minutes = Math.floor((ms % hour) / minute);
-  // Remaining seconds
   const seconds = Math.floor((ms % minute) / second);
 
   return { days, hours, minutes, seconds };

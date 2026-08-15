@@ -28,6 +28,12 @@
   border-color: #4e75ff;
 }
 
+#datetime-picker:disabled {
+  border-color: #808080;
+  color: #808080;
+  background-color: #fafafa;
+}
+
 .btn {
   display: flex;
   align-items: center;
