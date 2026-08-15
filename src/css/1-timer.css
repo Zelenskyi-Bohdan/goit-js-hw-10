@@ -15,28 +15,52 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
+  padding-left: 16px;
   width: 272px;
-  height: 40px;
+  border: 1px solid #989898;
+
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+#datetime-picker:active {
+  border-color: #4e75ff;
 }
 
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
-  gap: 10px;
+
   border-radius: 8px;
   padding: 8px 16px;
   width: 75px;
   height: 40px;
+  border: none;
 
-  background: #cfcfcf;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: #4e75ff;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  background-color: #6c8cff;
+}
+
+.btn:disabled {
+  background-color: #cfcfcf;
+  color: #989898;
 }
 
 .timer {
   display: flex;
   gap: 24px;
-  width: 346px;
+  width: 345px;
   height: 72px;
 }
 
@@ -44,8 +68,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  flex-grow: 1;
   width: 55px;
-  height: 72px;
 }
 
 .value {
